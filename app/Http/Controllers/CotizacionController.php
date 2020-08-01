@@ -28,7 +28,7 @@ class CotizacionController extends Controller
      */
     public function create()
     {
-        
+        return view('Cotizacion.create');
     }
 
     /**
@@ -109,7 +109,7 @@ class CotizacionController extends Controller
         ->where('document', $request->customerdocument)
         ->first();
         if ($user){
-            return view('Cotizacion.show', compact('user','products'));
+            return view('Cotizacion.create', compact('user','products'));
             //return view('Cotizacion.show')->with('user',$user);
         }
         else{
