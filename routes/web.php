@@ -23,6 +23,7 @@ Route::get('/inicio', function () {
 Auth::routes(); //Rutas para la autenticacion de usuarios
 Route::resource('/products', 'ProductController'); //Generamos todas las rutas para productos
 Route::resource('/customers', 'CustomerController');
+Route::resource('/cotizaciones', 'CotizacionController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -35,5 +36,4 @@ Route::resource('/cotizacions', 'CotizacionController');
 Route::post('/cotizacions/create', function () {
     return view('Cotizacion.create');
 });
-Route::post('/cotizacions/select', 'CotizacionController@query');
 Route::post('/cotizaciones', 'CotizacionController@searchCustomer');

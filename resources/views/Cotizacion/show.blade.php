@@ -12,8 +12,8 @@
 				</h3>
             </div>
             <div class="panel-body" style="padding:30px">
-                <form action="" method="POST">
-                    <input type="hidden" name="_method" value="PUT">
+                <form>
+                    <input type="hidden" name="_method" value="GET">
                 {{-- TODO: Abrir el formulario e indicar el método POST --}}
                     @csrf
 					{{-- TODO: Protección contra CSRF --}}
@@ -26,21 +26,39 @@
 						<li class="list-group-item list-group-item-info">Dirección: {{$user->address}}</li>
 						<li class="list-group-item list-group-item-info">Ciudad: {{$user->city}}</li>
 					  </ul>
+                 {{-- TODO: Cerrar formulario --}}
+				</form>
+				<div>
+					<h5>Añada los productos</h5>
+				</div>
+				<form action="cotizacions/create" method="GET">
+					<div class="btn-group" role="group" aria-label="...">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+								Seleccione una opción
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								@foreach($products as $product)
+								<input type="checkbox" id="item" name="{{$product->name}}">
+								<label for="item">{{$product->name}}</label>
+								<br>
+								<div class="form-group">
+								{{-- TODO: Completa el input para cantidad --}}
+								<input type="number" min="1" name="quantity" id="quantity" class="form-control">
+								</div>
+								@endforeach
+							</ul>
+						</div>
+					</div>
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-warning style="padding:8px 100px;margin-top:25px;">
+						<button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
 							Añadir productos
 						</button>
 					</div>
-					
-					
-
- 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
-							Actualizar
-						</button>
-					</div>
-                 {{-- TODO: Cerrar formulario --}}
-                </form>
+				</form>
+				
             </div>
 
 @endsection

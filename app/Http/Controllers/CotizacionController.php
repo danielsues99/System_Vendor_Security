@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cotizacion;
 use App\Customer;
+use App\Product;
 use DB;
 
 class CotizacionController extends Controller
@@ -27,7 +28,7 @@ class CotizacionController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -99,14 +100,17 @@ class CotizacionController extends Controller
         return $request->session()->all();
         
     }
+    //Consultamos los datos de usuario y producto para la cotizacion
     public function searchCustomer(Request $request)
     {
+        $products	=	Product::all();
         $user = DB::table('customers')
         ->select('name', 'document', 'email', 'phone', 'address', 'city')
         ->where('document', $request->customerdocument)
         ->first();
         if ($user){
-            return view('Cotizacion.show')->with('user',$user);
+            return view('Cotizacion.show', compact('user','products'));
+            //return view('Cotizacion.show')->with('user',$user);
         }
         else{
         return redirect('/customers/create')->withSuccess('IT WORKS!');     
