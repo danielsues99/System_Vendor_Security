@@ -29,3 +29,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Rutas para cliente
 Route::get('/productos', 'ProductController@catalog');
 Route::get('/productos/{id}', 'ProductController@show');
+
+//Rutas para la cotizacion
+Route::resource('/cotizacions', 'CotizacionController');
+Route::post('/cotizacions/create', function () {
+    return view('Cotizacion.create');
+});
+Route::post('/cotizacions/select', 'CotizacionController@query');
+Route::post('/cotizaciones', 'CotizacionController@searchCustomer');

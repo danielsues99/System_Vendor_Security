@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cotizacion;
+use App\Customer;
+use DB;
 
 class CotizacionController extends Controller
 {
@@ -13,7 +16,8 @@ class CotizacionController extends Controller
      */
     public function index()
     {
-        //
+        $cotizaciones	=	Cotizacion::all();
+		return view ('Cotizacion.index')->with('arraycotizaciones', $cotizaciones);
     }
 
     /**
@@ -32,7 +36,13 @@ class CotizacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function query(Request $request)
+    {
+        $customer = Customer::findOrFail($id);
+		return view('/cotizacion/index')->with('customer',$customer);
+    }
+
+     public function store(Request $request)
     {
         //
     }
@@ -81,4 +91,26 @@ class CotizacionController extends Controller
     {
         //
     }
+
+    public function infosession(Request $request)
+    {
+        $request->session()->put(['Daniel'=>'Administrador']);
+        $request->session()->regenerate(); //Evitar ataques por session fixation
+        return $request->session()->all();
+        
+    }
+    public function searchCustomer(Request $request)
+    {
+        $user = DB::table('customers')
+        ->select('name', 'document', 'email', 'phone', 'address', 'city')
+        ->where('document', $request->customerdocument)
+        ->first();
+        if ($user){
+            return view('Cotizacion.show')->with('user',$user);
+        }
+        else{
+        return redirect('/customers/create')->withSuccess('IT WORKS!');     
+    }
+    }
+
 }
