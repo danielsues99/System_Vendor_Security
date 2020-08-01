@@ -29,28 +29,10 @@
             </button>          
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item {{ Request::is('Alarm') && ! Request::is('Alarm/catalog')? 'active' : ''}}">
-                            <a class="nav-link" href="{{url('/alarms')}}">
+                        <li class="nav-item {{ Request::is('Product') && ! Request::is('Product/catalog')? 'active' : ''}}">
+                            <a class="nav-link" href="{{url('/productos')}}">
                                 <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
-                                Alarmas
-                            </a>
-                        </li>
-                        <li class="nav-item {{ Request::is('Camara') && ! Request::is('Camara/catalog')? 'active' : ''}}">
-                            <a class="nav-link" href="{{url('/camaras')}}">
-                                <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
-                                Cámaras
-                            </a>
-                        </li>
-                        <li class="nav-item {{ Request::is('AccessControl') && ! Request::is('Access/catalog')? 'active' : ''}}">
-                            <a class="nav-link" href="{{url('/accesscontrols')}}">
-                                <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
-                                Control de Acceso
-                            </a>
-                        </li>
-                        <li class="nav-item {{ Request::is('Intercom') && ! Request::is('Intercom/catalog')? 'active' : ''}}">
-                            <a class="nav-link" href="{{url('/intercoms')}}">
-                                <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
-                                Video Porteros
+                                Productos
                             </a>
                         </li>
                         <li>

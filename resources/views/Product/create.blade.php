@@ -23,7 +23,7 @@
 						<select name="category" class="custom-select" required>
 							<option value="Alarma">Alarma</option>
                             <option value="Cámara">Cámara</option>
-                            <option value="Control_Acceso">Control de Accceso</option>
+                            <option value="Control Acceso">Control de Accceso</option>
                             <option value="Videoportero">Videoportero</option>
 						  </select>
 					</div>

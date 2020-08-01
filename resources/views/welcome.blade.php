@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Home</title>
+        <title>Bienvenido</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -63,7 +63,7 @@
             }
         </style>
     </head>
-    <body>
+    <body class="container-fluid">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -81,12 +81,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Home
+                    Bienvenido
                 </div>
 
-                <div class="links">
-                    <a href="">Link 1</a>
-                    <a href="">Link 2</a>
+                <div>
+                    <p>
+                        Sistema de venta y administración de dispositivos de seguridad electrónica
+                    </p>
                 </div>
             </div>
         </div>
