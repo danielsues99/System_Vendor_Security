@@ -59,15 +59,17 @@
 					</a>
 				</td>
 				<td>
-					<a class="btn btn-warning" href="#">
+					<a class="btn btn-warning" href="{{ url('cotizacions/'.$cotizacion['id'].'/edit') }}">
 						<i class="fa fa-edit"></i>
 					</a>
 				</td>
-                <td>
-					<a class="btn btn-danger" href="#">
-						<i class="fa fa-trash"></i>
-					</a>
-				</td>
+				<td><form action="{{action('CotizacionController@destroy', $cotizacion->id)}}" method="POST" style="display:inline">
+                    {{ method_field('delete') }}
+					@csrf
+                    <button class='btn btn-danger'>
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </form></td>
 			</tbody>
             @endforeach     
         </table>

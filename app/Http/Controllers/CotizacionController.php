@@ -17,7 +17,7 @@ class CotizacionController extends Controller
      */
     public function index()
     {
-        $cotizaciones	=	Cotizacion::all();
+        $cotizaciones	=	Cotizacion::limit('3')->orderBY('id','DESC')->get();
 		return view ('Cotizacion.index')->with('arraycotizaciones', $cotizaciones);
     }
 
@@ -78,7 +78,8 @@ class CotizacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cotizacion = Cotizacion::findOrFail($id);
+		return view('/Cotizacion/edit')->with('cotizacion',$cotizacion);
     }
 
     /**
@@ -90,7 +91,13 @@ class CotizacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'description' => 'required',
+            'date' => 'required',
+        ]);
+        Cotizacion::whereId($id)->update($validatedData);
+
+        return redirect('/cotizacions')->with('success', 'Actualizado correctamente');
     }
 
     /**
@@ -101,7 +108,9 @@ class CotizacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cotizacion = Cotizacion::find($id);
+        $cotizacion->delete();
+        return redirect('/cotizacions');
     }
 
     public function infosession(Request $request)
