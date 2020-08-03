@@ -45,7 +45,18 @@ class CotizacionController extends Controller
 
      public function store(Request $request)
     {
-        //
+        try{
+            $cotizacion = new Cotizacion;
+            $cotizacion->document_customer = $request->document_customer;
+            $cotizacion->description = $request->description;
+            $cotizacion->date = $request->date;
+            $cotizacion->save();
+            return redirect('/cotizacions');
+            }
+            catch(\App\Exceptions\NotFoundmonException $e)
+            {
+                return $e->getMessage();
+            }
     }
 
     /**
@@ -105,12 +116,11 @@ class CotizacionController extends Controller
     {
         $products	=	Product::all();
         $user = DB::table('customers')
-        ->select('name', 'document', 'email', 'phone', 'address', 'city')
+        ->select('id','name', 'document', 'email', 'phone', 'address', 'city')
         ->where('document', $request->customerdocument)
         ->first();
         if ($user){
             return view('Cotizacion.create', compact('user','products'));
-            //return view('Cotizacion.show')->with('user',$user);
         }
         else{
         return redirect('/customers/create')->withSuccess('IT WORKS!');     

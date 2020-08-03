@@ -15,13 +15,10 @@ class CreateCotizacionsTable extends Migration
     {
         Schema::create('cotizacions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('product_id');
+            $table->string('document_customer');
             $table->string('description');
             $table->date('date');
             $table->timestamps();
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

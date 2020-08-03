@@ -32,8 +32,45 @@
 				 {{-- TODO: Cerrar formulario --}}
 				</form>
 				
-			</div>
-		</div>
+			</div>		
+		</div>		
 	</div>
+		{{--Lista de cotizaciones--}}
+	<div class="container" class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+				<th>#</th>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Imprimir</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+			</thead>
+			@foreach( $arraycotizaciones as $cotizacion )
+            <tbody>
+				<td>{{$cotizacion['id']}}</td>
+                <td>{{$cotizacion['document_customer']}}</td>
+                <td>{{$cotizacion['description']}}</td>
+				<td>{{$cotizacion['date']}}</td>
+				<td>
+					<a class="btn btn-info" href="#">
+						<i class="fa fa-print"></i>
+					</a>
+				</td>
+				<td>
+					<a class="btn btn-warning" href="#">
+						<i class="fa fa-edit"></i>
+					</a>
+				</td>
+                <td>
+					<a class="btn btn-danger" href="#">
+						<i class="fa fa-trash"></i>
+					</a>
+				</td>
+			</tbody>
+            @endforeach     
+        </table>
+    </div>
 </div>
 @endsection
