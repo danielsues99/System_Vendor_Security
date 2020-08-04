@@ -67,7 +67,8 @@ class CotizacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $arraycotizacion = Cotizacion::findOrFail($id);
+		return view('Cotizacion.show')->with('arraycotizacion',$arraycotizacion);
     }
 
     /**
@@ -134,6 +135,10 @@ class CotizacionController extends Controller
         else{
         return redirect('/customers/create')->withSuccess('IT WORKS!');     
     }
+    }
+    public function catalog(){
+        $cotizacion = Cotizacion::all();
+        return view ("Cotizacion.show",['arraycotizacions'=> $cotizacion]);
     }
 
 }

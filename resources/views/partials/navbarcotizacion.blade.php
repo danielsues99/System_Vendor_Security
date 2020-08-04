@@ -32,8 +32,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item {{  Request::is('Cotizacion/index') ? 'active' : ''}}">
-                            <a class="nav-link" href="{{url('/cotizaciones')}}">
+                            <a class="nav-link" href="{{url('/cotizacions')}}">
                                 <span>&#10010</span> Cotizar
+                            </a>
+                        </li>
+                        <li class="nav-item {{  Request::is('Cotizacion/index') ? 'active' : ''}}">
+                            <a class="nav-link" href="{{url('/cotizaciones')}}">
+                                <span>&#9783</span> Cotizaciones
                             </a>
                         </li>
                     </ul>

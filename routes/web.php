@@ -37,3 +37,6 @@ Route::post('/cotizacions/create', function () {
     return view('Cotizacion.create');
 });
 Route::post('/cotizaciones', 'CotizacionController@searchCustomer');
+
+Route::get('/cotizaciones', 'CotizacionController@catalog');
+Route::get('/cotizaciones/{id}', 'CotizacionController@show');
