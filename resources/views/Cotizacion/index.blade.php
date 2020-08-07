@@ -43,7 +43,7 @@
                 <th>ID</th>
                 <th>Descripción</th>
                 <th>Fecha</th>
-                <th>Imprimir</th>
+                <th>Añadir</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
 			</thead>
@@ -54,8 +54,8 @@
                 <td>{{$cotizacion['description']}}</td>
 				<td>{{$cotizacion['date']}}</td>
 				<td>
-					<a class="btn btn-info" href="#">
-						<i class="fa fa-print"></i>
+					<a class="btn btn-info" href="{{ url('cotizacionproducto/'.$cotizacion['id']).'/select' }}">
+						<i class="fa fa-pencil-square-o"></i>
 					</a>
 				</td>
 				<td>

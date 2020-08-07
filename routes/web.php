@@ -40,3 +40,5 @@ Route::post('/cotizaciones', 'CotizacionController@searchCustomer');
 
 Route::get('/cotizaciones', 'CotizacionController@catalog');
 Route::get('/cotizaciones/{id}', 'CotizacionController@show');
+
+Route::get('/cotizacionproducto/{id}/select', 'CotizacionController@cotproducto');

@@ -137,8 +137,22 @@ class CotizacionController extends Controller
     }
     }
     public function catalog(){
-        $cotizacion = Cotizacion::all();
-        return view ("Cotizacion.show",['arraycotizacions'=> $cotizacion]);
+        $arraycotizacions = Cotizacion::all();
+        $producto = Product::all();
+        return view ("Cotizacion.show",compact('arraycotizacions','producto'));
     }
-
+    public function cotproducto(Request $request)
+    {
+        $products	=	Product::all();
+        $cotizacion = DB::table('cotizacions')
+        ->select('id','document_customer', 'description', 'date')
+        ->where('id', $request->id)
+        ->first();
+        if ($cotizacion){
+            return view('Cotizacion.select', compact('cotizacion','products'));
+        }
+        else{
+            return redirect('/cotizacions/create')->withSuccess('IT WORKS!');     
+    }
+}
 }
