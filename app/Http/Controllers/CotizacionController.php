@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Cotizacion;
 use App\Customer;
 use App\Product;
+use App\CotizacionProducto;
 use DB;
 
 class CotizacionController extends Controller
@@ -153,6 +154,22 @@ class CotizacionController extends Controller
         }
         else{
             return redirect('/cotizacions/create')->withSuccess('IT WORKS!');     
+        }
     }
-}
+    public function storeproduct_cotizacion(Request $request) //metodo para guardar porductos en cotizacion
+    {
+        try{
+            $prod_cotizacion = new CotizacionProducto;
+            $prod_cotizacion->doc_customer = $request->doc_customer;
+            $prod_cotizacion->id_cotizacion = $request->id_cotizacion;
+            $prod_cotizacion->products = $request->prod;
+            $prod_cotizacion->quantity = $request->quantity;
+            $prod_cotizacion->save();
+            return redirect('/cotizaciones');
+            }
+            catch(\App\Exceptions\NotFoundmonException $e)
+            {
+                return $e->getMessage();
+            }
+    }
 }
