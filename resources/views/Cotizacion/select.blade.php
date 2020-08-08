@@ -25,37 +25,27 @@
             <input type="hidden" name="doc_customer" id="doc_customer" readonly class="form-control" value="{{$cotizacion->document_customer}}" required>
             <h5>Seleccione productos</h5>
             <div class="container" class="table-responsive">
-              <table class="table table-hover">
+              <table class="table table-bordered">
                 <thead class="thead-dark">
                     <th>Choose</th>
                     <th>Nombre</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Costo</th>
-                    {{--<th>Guardar</th>--}}
                 </thead>
               @foreach( $products as $product )
                 <tbody>
-                  <input type="hidden" name="prod" value="<?=$product['name']?>" >
                   <th>
-                    <input type="Radio" name="seleccionado" id="seleccionado" value="1" onkeyup="habilitar()">
+                    <input type="Radio" name="prod" id="prod" value="{{$product['name']}}">
                   </th>
                   <td>{{$product['name']}}</td>
                   <td>{{$product['mark']}}</td>
                   <td>{{$product['model']}}</td>
                   <td>{{$product['cost']}}</td>
-                  {{--<td>
-                    <form action="{{ url('/cotizacion_producto') }}" method="POST">
-                      <a class="btn btn-info">
-                      <button type="submit" id="boton">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                      </button></a>
-                    </form>
-                  </td>--}}
                 </tbody>
               @endforeach 
               </table>
-              <p>Cantidad</p>  
+              <label for="quantity">Cantidad</label>  
               <input type="number" name="quantity" id="quantity" class="form-control" min="1">
           </div>
 

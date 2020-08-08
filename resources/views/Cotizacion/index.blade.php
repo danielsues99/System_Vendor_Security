@@ -40,7 +40,7 @@
         <table class="table table-hover">
             <thead class="thead-dark">
 				<th>#</th>
-                <th>ID</th>
+                <th>Documento</th>
                 <th>Descripción</th>
                 <th>Fecha</th>
                 <th>Añadir</th>
