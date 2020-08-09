@@ -43,7 +43,8 @@
                 <th>Documento</th>
                 <th>Descripción</th>
                 <th>Fecha</th>
-                <th>Añadir</th>
+				<th>Añadir</th>
+				<th>Generar</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
 			</thead>
@@ -56,6 +57,11 @@
 				<td>
 					<a class="btn btn-info" href="{{ url('cotizacionproducto/'.$cotizacion['id']).'/select' }}">
 						<i class="fa fa-pencil-square-o"></i>
+					</a>
+				</td>
+				<td>
+					<a class="btn btn-success" href="{{ url('previa/'.$cotizacion['id']) }}">
+						<i class="fa fa-print"></i>
 					</a>
 				</td>
 				<td>

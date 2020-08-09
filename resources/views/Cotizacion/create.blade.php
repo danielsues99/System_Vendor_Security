@@ -18,6 +18,8 @@
 					{{-- TODO: Protección contra CSRF --}}
 					<h5>Información del cliente</h5>
 					<ul class="list-group">
+							<input type="hidden" name="id_customer" id="id_customer" readonly class="form-control" value="{{$user->id}}" required>
+							
 							<label for="name_customer">Nombre:</label>
 							<input type="text" name="name_customer" id="name_customer" readonly class="form-control" value="{{$user->name}}" required>
 							

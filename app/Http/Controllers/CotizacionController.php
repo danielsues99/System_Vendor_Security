@@ -48,6 +48,7 @@ class CotizacionController extends Controller
     {
         try{
             $cotizacion = new Cotizacion;
+            $cotizacion->id_customer = $request->id_customer;
             $cotizacion->document_customer = $request->document_customer;
             $cotizacion->description = $request->description;
             $cotizacion->date = $request->date;
@@ -171,5 +172,21 @@ class CotizacionController extends Controller
             {
                 return $e->getMessage();
             }
+    }
+    public function generar(Request $request){
+        $cotizaciones = CotizacionProducto::all();
+        $print = DB::table('cotizacion_productos')
+        ->select('id_cotizacion','doc_customer', 'quantity')
+        ->where('id', $request->id)
+        ->first();
+        echo $cotizaciones;
+        echo $print;
+        //if ($print){
+            //return view('Cotizacion.select', compact('print'));
+        //}
+        //else{
+            //return redirect('/cotizacions/create')->withSuccess('IT WORKS!');     
+        //}
+        return view ("Cotizacion.print",compact('cotizaciones'));
     }
 }
