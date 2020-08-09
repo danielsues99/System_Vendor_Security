@@ -24,12 +24,12 @@
                 <td>{{$product['imagen']}}</td>
                 <td>{{$product['cost']}}</td>
                 <td>{{$product['description']}}</td>
-                <td><a class="btn btn-warning" href="{{ url('products/'.$product['id'].'/edit') }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a></td>
+                <td><a class="btn btn-warning" href="{{ url('products/'.$product['id'].'/edit') }}">&#9998<span class="glyphicon glyphicon-pencil"></span> Editar</a></td>
                 <td><form action="{{action('ProductController@destroy', $product->id)}}" method="POST" style="display:inline">
                     {{ method_field('delete') }}
                     @csrf
                     <button class='btn btn-danger'>
-                        Eliminar
+                        &#10006 Eliminar
                     </button>
                 </form></td>
             </tbody>

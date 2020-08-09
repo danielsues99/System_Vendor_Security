@@ -18,7 +18,8 @@
 					{{-- TODO: Protección contra CSRF --}}
 					<h5>Información de cotización</h5>
 					<ul class="list-group">
-							<label for="id_cotizacion">Numero de cotización:</label>
+              
+            <input type="hidden" name="id_customer" id="id_customer" readonly class="form-control" value="{{$cotizacion->id_customer}}" required><label for="id_cotizacion">Numero de cotización:</label>
               <input type="text" name="id_cotizacion" id="id_cotizacion" readonly class="form-control" value="{{$cotizacion->id}}" required>
               <br>
           </ul>
@@ -27,16 +28,16 @@
             <div class="container" class="table-responsive">
               <table class="table table-bordered">
                 <thead class="thead-dark">
-                    <th>Choose</th>
+                    <th>&#10004</th>
                     <th>Nombre</th>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>Costo</th>
+                    <th>Precio</th>
                 </thead>
               @foreach( $products as $product )
                 <tbody>
                   <th>
-                    <input type="Radio" name="prod" id="prod" value="{{$product['name']}}">
+                    <input type="Radio" name="prod" id="prod" value="{{$product['name']}}" required>
                   </th>
                   <td>{{$product['name']}}</td>
                   <td>{{$product['mark']}}</td>
@@ -46,7 +47,7 @@
               @endforeach 
               </table>
               <label for="quantity">Cantidad</label>  
-              <input type="number" name="quantity" id="quantity" class="form-control" min="1">
+              <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
           </div>
 
 				<div class="form-group text-center">
