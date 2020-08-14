@@ -60,7 +60,7 @@
 					</a>
 				</td>
 				<td>
-					<a class="btn btn-success" href="{{ url('previa/'.$cotizacion['id']) }}">
+					<a class="btn btn-success" href="{{ url('previa/'.$cotizacion['document_customer']) }}">
 						<i class="fa fa-print"></i>
 					</a>
 				</td>

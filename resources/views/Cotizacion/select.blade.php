@@ -47,7 +47,7 @@
               @endforeach 
               </table>
               <label for="quantity">Cantidad</label>  
-              <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
+              <input type="number" name="quantity[]" id="quantity[]" class="form-control" min="1" required>
           </div>
 
 				<div class="form-group text-center">

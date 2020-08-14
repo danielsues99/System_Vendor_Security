@@ -39,19 +39,24 @@ class CotizacionProductoController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+        $cantidad = [$_POST['quantity']];
+        $cantidades = [];
+        array_push($cantidades, $cantidad);
+        var_dump($cantidades);
+
+        /*try{
             $prod_cotizacion = new CotizacionProducto;
             $prod_cotizacion->id_customer = $request->id_customer;
             $prod_cotizacion->id_cotizacion = $request->id_cotizacion;
             $prod_cotizacion->products = $request->prod;
-            $prod_cotizacion->quantity = $request->quantity;
+            $prod_cotizacion->quantity[] = $request->array_push($cantidad);
             $prod_cotizacion->save();
             return redirect('/cotizaciones');
             }
             catch(\App\Exceptions\NotFoundmonException $e)
             {
                 return $e->getMessage();
-            }
+            }*/
     }
 
     /**
@@ -100,20 +105,30 @@ class CotizacionProductoController extends Controller
     }
 
     public function generar(Request $request){
-        $cotizaciones = CotizacionProducto::all();
-        $print = DB::table('cotizacion_productos')
-        ->select('id_cotizacion','doc_customer', 'quantity')
-        ->where('id', $request->id)
-        ->first();
-        echo $cotizaciones;
-        echo $print;
+        //consulta de datos de cliente para generar cotizacion
+        $cliente = DB::table('customers')
+        ->select('name','document','phone','email','address','city')
+        ->where('document', '=', $request->document_customer)
+        ->get();
+        //Consultar datos de cotizacion
+        $cotizacion = DB::table('cotizacions')
+        ->select('description','date')
+        ->where('document_customer', '=', $request->document_customer)
+        ->get();
+        //Consulta de productos
+        $products = DB::table('cotizacion_productos')
+        ->select('products','quantity')
+        ->where('id_customer', '=', $request->id_customer)
+        ->get();
+        echo $products;
+        
         //if ($print){
             //return view('Cotizacion.select', compact('print'));
         //}
         //else{
             //return redirect('/cotizacions/create')->withSuccess('IT WORKS!');     
-        //}
-        return view ("Cotizacion.print",compact('cotizaciones'));
+        //}*/
+        //return view ("Cotizacion.print");
     }
     
     public function cotproducto(Request $request)
