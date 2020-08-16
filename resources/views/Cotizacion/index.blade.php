@@ -40,7 +40,6 @@
         <table class="table table-hover">
             <thead class="thead-dark">
 				<th>&#9839</th>
-                <th>Documento</th>
                 <th>Descripción</th>
                 <th>Fecha</th>
 				<th>Añadir</th>
@@ -51,7 +50,6 @@
 			@foreach( $arraycotizaciones as $cotizacion )
             <tbody>
 				<td>{{$cotizacion['id']}}</td>
-                <td>{{$cotizacion['document_customer']}}</td>
                 <td>{{$cotizacion['description']}}</td>
 				<td>{{$cotizacion['date']}}</td>
 				<td>
@@ -60,7 +58,7 @@
 					</a>
 				</td>
 				<td>
-					<a class="btn btn-success" href="{{ url('previa/'.$cotizacion['document_customer']) }}">
+					<a class="btn btn-success" href="{{ url('previa/'.$cotizacion['id']) }}">
 						<i class="fa fa-print"></i>
 					</a>
 				</td>

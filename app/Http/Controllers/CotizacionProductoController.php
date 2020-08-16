@@ -39,24 +39,22 @@ class CotizacionProductoController extends Controller
      */
     public function store(Request $request)
     {
-        $cantidad = [$_POST['quantity']];
-        $cantidades = [];
-        array_push($cantidades, $cantidad);
-        var_dump($cantidades);
-
-        /*try{
-            $prod_cotizacion = new CotizacionProducto;
-            $prod_cotizacion->id_customer = $request->id_customer;
-            $prod_cotizacion->id_cotizacion = $request->id_cotizacion;
-            $prod_cotizacion->products = $request->prod;
-            $prod_cotizacion->quantity[] = $request->array_push($cantidad);
-            $prod_cotizacion->save();
+        try{
+            for ($i = 0; $i <= count($request->input('prod')); $i++) {
+                $prod_cotizacion = new CotizacionProducto;
+                $prod_cotizacion->id_cotizacion = $request->id_cotizacion;
+                $prod_cotizacion->id_customer = $request->id_customer;
+                $prod_cotizacion->products = $request->input('prod')[$i];
+                $prod_cotizacion->quantity = $request->input('cantidad')[$i];
+                $prod_cotizacion->save();
+            }
+            
             return redirect('/cotizaciones');
             }
             catch(\App\Exceptions\NotFoundmonException $e)
             {
                 return $e->getMessage();
-            }*/
+            }
     }
 
     /**
@@ -105,22 +103,26 @@ class CotizacionProductoController extends Controller
     }
 
     public function generar(Request $request){
+        $documento = DB::table('cotizacions')
+        ->select('document_customer')
+        ->where('id', '=', $request->id)
+        ->get();
         //consulta de datos de cliente para generar cotizacion
         $cliente = DB::table('customers')
         ->select('name','document','phone','email','address','city')
-        ->where('document', '=', $request->document_customer)
+        ->where('document', '=', $documento)
         ->get();
         //Consultar datos de cotizacion
         $cotizacion = DB::table('cotizacions')
         ->select('description','date')
-        ->where('document_customer', '=', $request->document_customer)
+        ->where('id', '=', $request->id)
         ->get();
         //Consulta de productos
         $products = DB::table('cotizacion_productos')
         ->select('products','quantity')
-        ->where('id_customer', '=', $request->id_customer)
+        ->where('document_customer', '=', $request->document_customer)
         ->get();
-        echo $products;
+        echo $documento;
         
         //if ($print){
             //return view('Cotizacion.select', compact('print'));
@@ -135,7 +137,7 @@ class CotizacionProductoController extends Controller
     {
         $products	=	Product::all();
         $cotizacion = DB::table('cotizacions')
-        ->select('id','id_customer','document_customer', 'description', 'date')
+        ->select('id','id_customer', 'description', 'date')
         ->where('id', $request->id)
         ->first();
         if ($cotizacion){

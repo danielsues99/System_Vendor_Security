@@ -49,7 +49,6 @@ class CotizacionController extends Controller
         try{
             $cotizacion = new Cotizacion;
             $cotizacion->id_customer = $request->id_customer;
-            $cotizacion->document_customer = $request->document_customer;
             $cotizacion->description = $request->description;
             $cotizacion->date = $request->date;
             $cotizacion->save();
@@ -127,12 +126,12 @@ class CotizacionController extends Controller
     public function searchCustomer(Request $request)
     {
         $products	=	Product::all();
-        $user = DB::table('customers')
+        $customer = DB::table('customers')
         ->select('id','name', 'document', 'email', 'phone', 'address', 'city')
         ->where('document', $request->customerdocument)
         ->first();
-        if ($user){
-            return view('Cotizacion.create', compact('user','products'));
+        if ($customer){
+            return view('Cotizacion.create', compact('customer','products'));
         }
         else{
         return redirect('/customers/create')->withSuccess('IT WORKS!');     

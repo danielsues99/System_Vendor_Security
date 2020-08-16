@@ -16,7 +16,6 @@ class CreateCotizacionsTable extends Migration
         Schema::create('cotizacions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_customer');
-            $table->string('document_customer');
             $table->string('description');
             $table->date('date');
             $table->timestamps();
