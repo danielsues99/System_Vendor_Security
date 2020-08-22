@@ -39,6 +39,7 @@ class CotizacionProductoController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         try{
             for ($i = 0; $i <= count($request->input('prod')); $i++) {
                 $prod_cotizacion = new CotizacionProducto;
@@ -103,34 +104,20 @@ class CotizacionProductoController extends Controller
     }
 
     public function generar(Request $request){
-        $documento = DB::table('cotizacions')
-        ->select('document_customer')
-        ->where('id', '=', $request->id)
-        ->get();
-        //consulta de datos de cliente para generar cotizacion
-        $cliente = DB::table('customers')
-        ->select('name','document','phone','email','address','city')
-        ->where('document', '=', $documento)
-        ->get();
-        //Consultar datos de cotizacion
-        $cotizacion = DB::table('cotizacions')
-        ->select('description','date')
-        ->where('id', '=', $request->id)
-        ->get();
-        //Consulta de productos
-        $products = DB::table('cotizacion_productos')
-        ->select('products','quantity')
-        ->where('document_customer', '=', $request->document_customer)
-        ->get();
-        echo $documento;
-        
-        //if ($print){
-            //return view('Cotizacion.select', compact('print'));
-        //}
-        //else{
-            //return redirect('/cotizacions/create')->withSuccess('IT WORKS!');     
-        //}*/
-        //return view ("Cotizacion.print");
+        //Creando consulta de los datos para generar cotizacion
+        $print = DB::table('cotizacion_productos')
+            ->join('cotizacions', 'cotizacions.id', '=', 'cotizacion_productos.id_cotizacion')
+            ->join('customers', 'customers.id', '=', 'cotizacions.id_customer')
+            ->join('products', 'cotizacion_productos.products', '=', 'products.name')
+            ->select('products.mark','products.model','products.cost','cotizacion_productos.id_cotizacion', 'cotizacion_productos.products', 'cotizacion_productos.quantity','cotizacions.description', 'cotizacions.date', 'customers.*')
+            ->where('cotizacion_productos.id_cotizacion', $request->id)
+            ->get();
+        if ($print){
+            return view('Cotizacion.print', compact('print'));
+        }
+        else{
+            return redirect('/cotizacions/create')->withSuccess('Consulta inválida!');     
+        }
     }
     
     public function cotproducto(Request $request)

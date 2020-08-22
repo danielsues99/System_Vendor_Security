@@ -1,3 +1,13 @@
+<script language="javascript">
+  var dato = document.getElementById('prod');
+  function habilitar(){
+    document.getElementById('cant3').disabled=false;
+  }
+  function deshabilitar(){
+    document.getElementById('cant3').disabled=true;
+  }
+  </script>
+
 @extends('layouts.cotizacionnavbar')
 
 @section('content')
@@ -36,13 +46,13 @@
               @foreach( $products as $product )
                 <tbody>
                   <th>
-                    <input type="checkbox" name="prod[]" id="prod[]" value="{{$product['name']}}" onclick="cantidad[].disabled = !this.checked">
+                    <input type="checkbox" name="prod[]" id="prod" value="{{$product['name']}}" onclick="habilitar()" ondblclick="desabilitar()">
                   </th>
                   <td>{{$product['name']}}</td>
                   <td>{{$product['mark']}}</td>
                   <td>{{$product['model']}}</td>
                   <td>{{$product['cost']}}</td>
-                  <td><input type="number" placeholder="Cantidad" name="cantidad[]" id="cantidad[]" disabled></td>
+                  <td><input type="number" placeholder="Cantidad" name="cantidad[]" id="cant{{$product->id}}" disabled></td>
                 </tbody>
               @endforeach 
               </table>
