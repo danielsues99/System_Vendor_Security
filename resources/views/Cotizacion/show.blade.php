@@ -12,7 +12,8 @@
                 <th>Documento</th>
                 <th>Descripción</th>
                 <th>Fecha</th>
-                <th>Productos</th>
+                <th>Agregar</th>
+                <th>Generar</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
 			</thead>
@@ -27,17 +28,35 @@
 						<i class="fa fa-pencil-square-o"></i>
 					</a>
 				</td>
+				@if ($cotizacion['status']==2)
+				<td>
+					<a class="btn btn-success" href="{{ url('previa/'.$cotizacion['id']) }}">
+						<i class="fa fa-print"></i>
+					</a>
+				</td>
+				@else
+				<td>					
+						<button disabled class="btn btn-success"><i class="fa fa-print"></i></button>					
+				</td>
+				@endif
 				<td>
 					<a class="btn btn-warning" href="{{ url('cotizacions/'.$cotizacion['id'].'/edit') }}">
 						<i class="fa fa-edit"></i>
 					</a>
 				</td>
+				@if ($cotizacion['status']==2)
+				<td>					
+					<button disabled class="btn btn-danger"><i class="fa fa-trash"></i></button>					
+				</td>
+				@else
 				<td><form action="{{action('CotizacionController@destroy', $cotizacion->id)}}" method="POST" style="display:inline">
                     {{ method_field('delete') }}
 					@csrf
                     <button class='btn btn-danger'>
                         <i class="fa fa-trash"></i>
                     </button>
+				</form></td>
+				@endif
                 </form></td>
 			</tbody>
             @endforeach     

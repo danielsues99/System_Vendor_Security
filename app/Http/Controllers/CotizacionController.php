@@ -139,8 +139,7 @@ class CotizacionController extends Controller
     }
     }
     public function catalog(){
-        $arraycotizacions = Cotizacion::all();
-        $producto = Product::all();
-        return view ("Cotizacion.show",compact('arraycotizacions','producto'));
+        $cotizaciones	=	Cotizacion::orderBY('id','DESC')->get();
+		return view ('Cotizacion.show')->with('arraycotizacions', $cotizaciones);
     }
 }

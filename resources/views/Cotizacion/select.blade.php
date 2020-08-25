@@ -53,7 +53,7 @@
                   <td>{{$product['mark']}}</td>
                   <td>{{$product['model']}}</td>
                   <td>{{$product['cost']}}</td>
-                  <td><input type="number" placeholder="Cantidad" name="cantidad" class="cantidad" id="cant{{$product->id}}" disabled required></td>
+                  <td><input type="number" placeholder="Cantidad" name="cantidad[]" class="cantidad" id="cant{{$product->id}}" disabled required></td>
                 </tbody>
               @endforeach 
               </table>
