@@ -18,6 +18,7 @@ class CreateCotizacionsTable extends Migration
             $table->unsignedBigInteger('id_customer');
             $table->string('description');
             $table->date('date');
+            $table->string('status');
             $table->timestamps();
             $table->foreign('id_customer')->references('id')->on('customers');
         });

@@ -51,6 +51,9 @@
                     <h5><label for="date">Fecha</label></h5>
                     <input name="date" autocomplete="on" required type="date" class="form-control" id="fecha">
 				</div>
+				<div class="form-group">
+                    <input type="hidden" name="status" autocomplete="on" required type="status" class="form-control" id="status" value="1">
+				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
 						Crear cotización

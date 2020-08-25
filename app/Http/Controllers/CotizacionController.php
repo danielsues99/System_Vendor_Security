@@ -51,6 +51,7 @@ class CotizacionController extends Controller
             $cotizacion->id_customer = $request->id_customer;
             $cotizacion->description = $request->description;
             $cotizacion->date = $request->date;
+            $cotizacion->status = $request->status;
             $cotizacion->save();
             return redirect('/cotizacions');
             }

@@ -28,6 +28,7 @@
 					{{-- TODO: Protección contra CSRF --}}
 					<h5>Información de cotización</h5>
 					<ul class="list-group"> 
+            <input type="text" name="status" id="status" readonly class="form-control" value="2" required><label for="status">Status:</label>
              <input type="hidden" name="id_customer" id="id_customer" readonly class="form-control" value="{{$cotizacion->id_customer}}" required><label for="id_cotizacion">Numero de cotización:</label>
               <input type="text" name="id_cotizacion" id="id_cotizacion" readonly class="form-control" value="{{$cotizacion->id}}" required>
               <br>
@@ -46,13 +47,13 @@
               @foreach( $products as $product )
                 <tbody>
                   <th>
-                    <input type="checkbox" name="prod[]" id="prod" value="{{$product['name']}}" onclick="habilitar()" ondblclick="desabilitar()">
+                    <input type="checkbox" name="prod[]" id="prod" value="{{$product['name']}}" onclick="cant{{$product->id}}.disabled = !this.checked">
                   </th>
                   <td>{{$product['name']}}</td>
                   <td>{{$product['mark']}}</td>
                   <td>{{$product['model']}}</td>
                   <td>{{$product['cost']}}</td>
-                  <td><input type="number" placeholder="Cantidad" name="cantidad[]" id="cant{{$product->id}}" disabled></td>
+                  <td><input type="number" placeholder="Cantidad" name="cantidad" class="cantidad" id="cant{{$product->id}}" disabled required></td>
                 </tbody>
               @endforeach 
               </table>

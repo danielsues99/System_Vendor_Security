@@ -39,7 +39,11 @@ class CotizacionProductoController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //capturo dato para actualizar status de cotizacion
+        $validatedData = $request->validate([
+            'status' => 'required',
+        ]);
+        Cotizacion::whereId($request->id_cotizacion)->update($validatedData);
         try{
             for ($i = 0; $i <= count($request->input('prod')); $i++) {
                 $prod_cotizacion = new CotizacionProducto;
