@@ -28,7 +28,7 @@
 					{{-- TODO: Protección contra CSRF --}}
 					<h5>Información de cotización</h5>
 					<ul class="list-group"> 
-            <input type="text" name="status" id="status" readonly class="form-control" value="2" required><label for="status">Status:</label>
+            <input type="hidden" name="status" id="status" readonly class="form-control" value="2" required><label for="status"></label>
              <input type="hidden" name="id_customer" id="id_customer" readonly class="form-control" value="{{$cotizacion->id_customer}}" required><label for="id_cotizacion">Numero de cotización:</label>
               <input type="text" name="id_cotizacion" id="id_cotizacion" readonly class="form-control" value="{{$cotizacion->id}}" required>
               <br>

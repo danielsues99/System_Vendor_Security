@@ -45,7 +45,7 @@ class CotizacionProductoController extends Controller
         ]);
         Cotizacion::whereId($request->id_cotizacion)->update($validatedData);
         try{
-            for ($i = 0; $i <= count($request->input('prod')); $i++) {
+            for ($i = 0; $i < count($request->input('prod')); $i++) {
                 $prod_cotizacion = new CotizacionProducto;
                 $prod_cotizacion->id_cotizacion = $request->id_cotizacion;
                 $prod_cotizacion->id_customer = $request->id_customer;
