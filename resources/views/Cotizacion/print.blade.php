@@ -91,7 +91,7 @@
         </table>
         <div class="container-fluid">
             <h5 align="center">Condiciones del Servicio</h5>
-            <li class="list-group-item">{{$descripcion}}</li><br><br>
+            <textarea autofocus name="condiciones" id="condiciones" class="form-control" rows="7" required>{{$descripcion}}</textarea>
         </div>
         <address align="center">
             danielsuescun1520@gmail.com<br>
